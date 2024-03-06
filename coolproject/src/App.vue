@@ -1,6 +1,21 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { ref, onBeforeMount } from 'vue' // ref allows for editability, onMounted grabs api when component added on screen(for constant updates)l
+const crimeData = ref('')
+const crimeLocationData = ref('')
+async function getAPI() {
+  let data = await fetch('https://data.cityofnewyork.us/resource/uip8-fykc.json')
+  let dataJSON = data.json()
+  crimeData.value = dataJSON
+  let dataLocation = await fetch('https://data.cityofnewyork.us/resource/uip8-fykc.geojson')
+  let dataLocationJSON = dataLocation.json()
+  crimeLocationData.value = dataLocationJSON // for leaflet
+  // https://play.vuejs.org/#eNp9UtuK2zAQ/ZVBL+tAYkPaUhqcQLfsQwu90Pat6oNQxrE2tiSksZNg/O8d2bvpli5rMLbOBZ0z0iDee5/3HYqNKKMOxhNEpM7vpDWtd4FggIDVEpy9xcoF/Ow6SzBCFVwLN+y8kRZAWu1sJPAuUoRtsmS/fi+klfYfY6bixWrIFrDdwZCckyPvVdMh+9RJGYIKSdeZFDWRj5ui8MH0inD1br3ev32zCqhDZ6hFS4S6tkarhjBSrrxR4bJqnT7m2rWF7iK5Fs8YtIkYCykWOdVos6BOKQB/8vvobLZ4wNMiEembX31cY+S3LOYB8Wh4Qdj6hkPxqtybHvoVl9xKkfqAsXMvKWBzxMsDnJu9FKwHfsp6vRuGScUwjGNZMPI/Z1WLT9my4M3SnsU1gFgKijz+yhymNnyU02Sl4Bl402D46snw8UixmWeeONU07vRpwih0uHzEdY36+Ax+H88Jk+JbwIihRymuHKlwQJrpux9f8Mz/V7J1+65h9Qvkd4yu6VLGWXbb2T3HfqKb0n6cLqSxh5/x7kxo42OpFDQpx0kvBd/KDy9U/xv3Vf568vEBi/EP1K8G5A==
+}
+onBeforeMount(() => {
+  getAPI()
+})
 </script>
 
 <template>
@@ -20,66 +35,4 @@ import HelloWorld from './components/HelloWorld.vue'
   <!-- <RouterView /> -->
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
+<style scoped></style>
