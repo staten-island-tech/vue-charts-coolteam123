@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-/* please note vue-tailwind does not seem to work with current vue */
 export default {
+  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'], // checks for unused styles
   content: [],
   theme: {
     extend: {}

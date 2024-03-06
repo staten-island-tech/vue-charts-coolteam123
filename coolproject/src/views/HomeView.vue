@@ -1,9 +1,10 @@
+<template>
+  <div></div>
+</template>
+
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import { ref, onMounted } from 'vue' // ref allows for editability, onMounted grabs api when component added (for constant updates)
+// grab api is like async on js as usual
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style lang="scss" scoped></style>
