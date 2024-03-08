@@ -1,11 +1,9 @@
 <template>
-  <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+  <Bar v-if="loaded" id="my-chart-id" :options="chartOptions" :data="chartData" />
 </template>
 
-<script setup>
+<script>
 import { Bar } from 'vue-chartjs'
-import { crimeData } from '../App.vue'
-import { loaded } from '@/App.vue'
 import {
   Chart as ChartJS,
   Title,
@@ -17,7 +15,26 @@ import {
 } from 'chart.js'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
-if (loaded == true) {
-  this.chartData = crimeData // start sorting numbers and stuff-- for loop instances and location
+export default {
+  name: 'BarChart',
+  components: { Bar },
+  data: () => ({
+    loaded: false,
+    chartData: null
+  }),
+  async mounted() {
+    this.loaded = false
+
+    try {
+      const { data } = await fetch('https://data.cityofnewyork.us/resource/uip8-fykc.json')
+      const dataJSON = data.json()
+      const crimeData = dataJSON
+      this.chartdata = crimeData
+
+      this.loaded = true
+    } catch (e) {
+      console.error(e)
+    }
+  }
 }
 </script>

@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <PieChart />
-  </div>
+  <main>
+    <div>
+      <PieChart />
+      <p class="black">dis dat dis dat home page</p>
+    </div>
+  </main>
 </template>
 
 <script setup>
