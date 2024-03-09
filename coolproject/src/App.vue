@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink, RouterView } from 'vue-router'
 // ref allows for editability, onMounted grabs api when component added on screen(for constant updates)l
 </script>
 
@@ -14,6 +15,7 @@
       </nav> -->
     </div>
   </header>
+  <RouterView />
 
   <!-- <RouterView /> -->
 </template>

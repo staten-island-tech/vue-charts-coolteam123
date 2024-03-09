@@ -1,14 +1,14 @@
 <template>
   <main>
     <div>
-      <PieChart />
+      <BarChart />
       <p class="black">dis dat dis dat home page</p>
     </div>
   </main>
 </template>
 
 <script setup>
-import PieChart from '@/components/PieChart.vue'
+import BarChart from '@/components/BarChart.vue'
 </script>
 
 <style lang="scss" scoped></style>
