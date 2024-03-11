@@ -1,6 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-// ref allows for editability, onMounted grabs api when component added on screen(for constant updates)l
+import { onMounted, ref } from 'vue'
+import { getAPI, loaded, crimeData } from '@/crimeData.js'
+// ref allows for editability, onMounted grabs api when component added on screen(for constant updates)
+
+onMounted(() => {
+  getAPI()
+  loaded.value = ref(true)
+})
 </script>
 
 <template>

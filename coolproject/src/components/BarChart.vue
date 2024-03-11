@@ -14,6 +14,7 @@ import {
   CategoryScale,
   LinearScale
 } from 'chart.js'
+import { loaded, crimeData } from '@/crimeData.js'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 const testData = [
@@ -29,7 +30,6 @@ export default {
   name: 'BarChart',
   components: { Bar },
   data: () => ({
-    loaded: false,
     chartData: {
       labels: testData.map((row) => row.year),
       datasets: [
@@ -39,18 +39,6 @@ export default {
         }
       ]
     }
-  }),
-  async mounted() {
-    this.loaded = false
-
-    try {
-      const APIdata = await fetch('https://data.cityofnewyork.us/resource/uip8-fykc.json') // app is rendering  before this.. must fix.
-      const dataJSON = APIdata.json()
-      const crimeData = dataJSON
-      this.loaded = true
-    } catch (e) {
-      console.error(e)
-    }
-  }
+  })
 }
 </script>
