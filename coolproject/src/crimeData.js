@@ -1,6 +1,6 @@
 import { ref } from 'vue'
-export const crimeData = ref('')
-export const loaded = ref(false)
+const crimeData = ref('')
+const loaded = ref(false)
 export async function getAPI() {
   let data = await fetch('https://data.cityofnewyork.us/resource/uip8-fykc.json')
   let dataJSON = await data.json()
@@ -11,6 +11,8 @@ export async function getAPI() {
   let dataLocationJSON = dataLocation.json()
   crimeLocationData.value = dataLocationJSON // for leaflet */
 }
+getAPI()
+export { crimeData, loaded }
 /*   const crimeLocationData = ref('')
   let dataLocation = await fetch('https://data.cityofnewyork.us/resource/uip8-fykc.geojson')
   let dataLocationJSON = dataLocation.json()
