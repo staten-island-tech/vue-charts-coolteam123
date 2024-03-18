@@ -14,10 +14,11 @@ import {
   Legend,
   BarElement,
   CategoryScale,
-  LinearScale
+  LinearScale,
+  Colors
 } from 'chart.js'
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, Colors)
 
 export default {
   name: 'BarChart',
@@ -28,7 +29,7 @@ export default {
       labels: null, // boroughData.map((row) => row.borough),
       datasets: [
         {
-          label: 'test',
+          label: 'Crimes by Borough in 2023',
           data: null //boroughData.map((row) => row.count)
         }
       ]
@@ -73,12 +74,14 @@ export default {
       })
       this.chartData.labels = dataDict.map((row) => row.borough)
       this.chartData.datasets[0].data = dataDict.map((row) => row.crimes)
-      // put func in crimes -- chartoptions -- put props in parent
+      // this.chartData.labels == dict
+      //this.cchartData.datasets.data = blah blah
       this.loaded = true
       /*
       let dataLocation = await fetch('https://data.cityofnewyork.us/resource/uip8-fykc.geojson')
       let dataLocationJSON = dataLocation.json()
       crimeLocationData.value = dataLocationJSON // for leaflet */
+      // patternomaly // vue leaflet
     } catch (e) {
       console.error(e)
     }
