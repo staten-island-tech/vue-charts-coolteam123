@@ -1,9 +1,11 @@
 <template>
   <div>
-    <p>about page</p>
+    <MapChart />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import MapChart from '@/components/MapChart.vue'
+</script>
 
 <style lang="scss" scoped></style>
