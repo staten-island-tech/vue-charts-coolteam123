@@ -1,7 +1,12 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+/* import { Bar} from 'vue.chartjs' */
 import HelloWorld from './components/HelloWorld.vue'
-import { ref, onBeforeMount } from 'vue' // ref allows for editability, onMounted grabs api when component added on screen(for constant updates)l
+import { ref, onBeforeMount } from 'vue' // ref allows for editability, onMounted grabs api when component added on screen(for constant updates)
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+import "leaflet/dist/leaflet.css";
+import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 const crimeData = ref('')
 const crimeLocationData = ref('')
 async function getAPI() {
@@ -17,7 +22,6 @@ onBeforeMount(() => {
   getAPI()
 })
 </script>
-
 <template>
   <header>
     <img alt="Vue logo" class="logo bg-black w-24 h-24" src="@/assets/logo.svg" />
