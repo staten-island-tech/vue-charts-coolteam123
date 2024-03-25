@@ -4,12 +4,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import { ref, onBeforeMount } from 'vue' // ref allows for editability, onMounted grabs api when component added on screen(for constant updates)
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
-import BarChart from 'coolproject/src/components/chart.vue'
-
-export default {
-  name: 'App',
-  components: { BarChart }
-}
+import BarChart from './components/chart.vue'
 const crimeData = ref('')
 const crimeLocationData = ref('')
 async function getAPI() {
@@ -27,6 +22,11 @@ onBeforeMount(() => {
 })
 
 </script>
+<script> 
+export default {
+  name: 'App',
+  components: { BarChart }
+} </script>
 <template>
   <header>
    <BarChart></BarChart>
