@@ -20,13 +20,18 @@ async function getAPI() {
 onBeforeMount(() => {
   getAPI()
 })
-
 </script>
 <script> 
+
 export default {
   name: 'App',
-  components: { BarChart }
-} </script>
+  components: { BarChart},
+  props : ['dataJSON'],
+  setup(props){
+    console.log(props.dataJSON)
+  }
+} 
+</script>
 <template>
   <header>
    <BarChart></BarChart>
@@ -34,10 +39,7 @@ export default {
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav> -->
-    
   </header>
-
   <!-- <RouterView /> -->
 </template>
-
 <style scoped></style>
