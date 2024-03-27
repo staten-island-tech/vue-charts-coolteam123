@@ -15,9 +15,9 @@ export default{
     try {
       const { userlist } = await fetch('/api/userlist')
       this.chartdata = userlist
-
+      chartData !== null
       this.loaded = true
-    } catch (e) {
+    } catch (error) {
       console.error(error)
   }
     }}
