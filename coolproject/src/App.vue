@@ -5,19 +5,18 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo bg-black w-24 h-24" src="@/assets/logo.svg" />
-
-    <div class="wrapper">
-      <!--       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav> -->
+    <div class="buttonContainer justify-center text-center">
+      <RouterView />
+      <RouterLink to="/">
+        <button class="justify-center m-2 border-green-700 rounded-lg border-4">Chart</button>
+      </RouterLink>
+      <RouterLink to="/about">
+        <button class="justify-center m-2 border-green-700 rounded-lg border-4">
+          Map
+        </button></RouterLink
+      >
     </div>
   </header>
-  <RouterView />
-  <RouterLink to="/"> First Page </RouterLink>
-  <RouterLink to="/about"> next page </RouterLink>
-
   <!-- <RouterView /> -->
 </template>
 

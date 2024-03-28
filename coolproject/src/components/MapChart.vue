@@ -57,9 +57,9 @@ export default {
     const dataJSON = await data.json()
     dataJSON.slice(0, 100).forEach((element) => {
       this.markers.push({
-        name: `DESCRIPTION: ${element.pd_desc}`,
-        date: `DATE: ${element.arrest_date.slice(0, 10)}`,
-        boro: `BORO:${element.arrest_boro}`,
+        name: `Crime: ${element.pd_desc}`,
+        date: `Date: ${element.arrest_date.slice(0, 10)}`,
+        boro: `Boro: ${element.arrest_boro}`,
         position: {
           lat: Number(element.geocoded_column.coordinates[1].toFixed(3)),
           lng: Number(element.geocoded_column.coordinates[0].toFixed(3))
