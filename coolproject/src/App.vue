@@ -26,10 +26,7 @@ onBeforeMount(() => {
 export default {
   name: 'App',
   components: { BarChart},
-  props : ['dataJSON'],
-  setup(props){
-    console.log(props.dataJSON)
-  }
+  /* props : ['data'], */
 } 
 </script>
 <template>
