@@ -10,7 +10,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <RouterLink to="/">
         <button class="justify-center m-2 border-green-700 rounded-lg border-4">Chart</button>
       </RouterLink>
-      <RouterLink to="/about">
+      <RouterLink to="/maps">
         <button class="justify-center m-2 border-green-700 rounded-lg border-4">
           Map
         </button></RouterLink

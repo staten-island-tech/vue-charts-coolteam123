@@ -6,15 +6,26 @@
         layer-type="base"
         name="OpenStreetMap"
       ></l-tile-layer>
-      <l-marker v-for="item in markers" :key="item.name" :lat-lng="item.position">
+      <l-marker
+        v-for="item in markers"
+        :key="item.name"
+        :visible="item.visible"
+        :lat-lng="item.position"
+      >
         <l-popup>
           {{ item.name }} <br />
           {{ item.date }}<br />{{ item.boro }}</l-popup
         >
       </l-marker>
-      <!-- vfor here -->
       <l-geo-json :geojson="GeoJSON" :options-style="geoStyler"></l-geo-json>
     </l-map>
+    <div class="buttonContainer space-x-3 bottom-5 text-left">
+      <button class="m-3" @click="boroughSelect('Q')">Queens</button>
+      <button @click="boroughSelect('B')">Bronx</button>
+      <button @click="boroughSelect('M')">Manhattan</button>
+      <button @click="boroughSelect('S')">Staten Island</button>
+      <button @click="boroughSelect('K')">Brooklyn</button>
+    </div>
   </div>
 </template>
 
@@ -44,9 +55,7 @@ export default {
           name: 'test',
           date: 'test',
           boro: 'test',
-          position: { lat: 51.505, lng: -0.09 },
-          draggable: false,
-          visible: Boolean(false)
+          position: { lat: 51.505, lng: -0.09 }
         }
       ])
     }
@@ -55,7 +64,7 @@ export default {
     this.geoLoaded = false
     const data = await fetch('https://data.cityofnewyork.us/resource/uip8-fykc.json')
     const dataJSON = await data.json()
-    dataJSON.slice(0, 100).forEach((element) => {
+    dataJSON.forEach((element) => {
       this.markers.push({
         name: `Crime: ${element.pd_desc}`,
         date: `Date: ${element.arrest_date.slice(0, 10)}`,
@@ -64,30 +73,27 @@ export default {
           lat: Number(element.geocoded_column.coordinates[1].toFixed(3)),
           lng: Number(element.geocoded_column.coordinates[0].toFixed(3))
         },
-        draggable: false,
-        visible: true,
-        opacity: 0.5
+        visible: true
       })
-    })
-    this.markers.forEach((marker) => {
-      console.log(marker.boro)
-      if (marker.boro === 'BORO:K') {
-        marker.visible === true
-        console.log(marker.visible)
-      }
     })
     this.geoLoaded = true
   },
   methods: {
-    alert(item) {
-      alert(`${item.id} \n${item.date}`)
+    boroughSelect(borough) {
+      this.markers.forEach((marker) => {
+        if (marker.boro.slice(6, 7) === borough) {
+          marker.visible = true
+        } else if (marker.boro.slice(6, 7) != borough) {
+          marker.visible = false
+        }
+      })
     }
     /*     boroughChange() {
       this.markers.forEach((marker) => {
         if (marker.boro == 'K') {
           marker.visible == true
-        } 
-      }) 
+        }
+      })
     }*/
   }
 }
