@@ -14,8 +14,12 @@ export default{
   
       loaded : false,
       chartData : { 
-        labels : ['test']
-              
+        labels : ['test'],
+        datasets : [
+          { label : ['test2'],
+            data : null
+          }
+        ]
       }}), 
     async mounted(){
       this.loaded = false
@@ -24,10 +28,9 @@ export default{
    stuffjson.forEach((thing) =>  {
     const gender = thing.perp_sex
   /*   console.log(gender) */
-    const userlist  =  gender 
-      this.chartdata = userlist
+      this.chartdata= gender // chartData gives bug, chartdata gives empty chart
       this.loaded = true
-      console.log(userlist)
+      console.log(gender) // says map's properties r undefined
    })   
     } catch (error) {
       console.error(error)
