@@ -4,8 +4,6 @@ import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, Li
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 const apistuff = await fetch('https://data.cityofnewyork.us/resource/uip8-fykc.json');
     const stuffjson = await apistuff.json();
-
-
 export default{
     name : 'BarChart',
     components : {Bar},
@@ -14,24 +12,40 @@ export default{
   
       loaded : false,
       chartData : { 
-        labels : ['test'],
+        labels : [null],
         datasets : [
-          { label : ['test2'],
-            data : null
+          { 
+            data : [],
           }
         ]
       }}), 
     async mounted(){
       this.loaded = false
-    
     try {   
+    const sortgender = [
+      { Gender : 'F', crimes : 0},
+      {Gender : 'M', crimes : 0},
+    ]
    stuffjson.forEach((thing) =>  {
-    const gender = thing.perp_sex
+ let gender = thing.perp_sex
+    /* const {userlist} = apistuff */ //stuffjson
   /*   console.log(gender) */
-      this.chartdata= gender // chartData gives bug, chartdata gives empty chart
+      this.chartData = sortgender// chartData gives bug, chartdata gives empty chart
       this.loaded = true
-      console.log(gender) // says map's properties r undefined
+        if (gender === 'F') {
+     
+          Object.entries(sortgender)[0][1].crimes++
+        }
+        if (gender === 'M'){
+      
+          Object.entries(sortgender)[1][1].crimes++
+        }
+    
+      /* console.log(userlist)  */// says map's properties r undefined
    })   
+   this.chartData.labels = sortgender.map((sort) => sort.Gender)
+   this.chartData.datasets= sortgender.map((sort)=> sort.crimes)
+   console.log(sortgender)
     } catch (error) {
       console.error(error)
   }
