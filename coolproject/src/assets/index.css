@@ -1,3 +1,8 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .container{
     width: 500px;
     height: 500px;
@@ -9,12 +14,10 @@ h1{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color:cornflowerblue
 }
-button{
+
+.evanButton{
     text-align: center;
-
-
 display: inline-block;
-outline: none;
 cursor: pointer;
 font-weight: 600;
 border-radius: 3px;
@@ -24,8 +27,5 @@ color: #000021;
 background: rgb(50, 205, 182);
 line-height: 1.15;
 font-size: 16px;
-:hover {
-    transition: all .1s ease;
-}
 }
  /*  css taken from online */

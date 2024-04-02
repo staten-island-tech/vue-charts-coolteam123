@@ -1,12 +1,11 @@
 <template>
   <div class="container">
-    <Bar v-if="loaded" id="my-chart-id" :options="chartOptions" :data="chartData" />
+    <Bar v-if="loaded" id="my-chart-id" :data="chartData" />
   </div>
 </template>
 
 <script>
 import { Bar } from 'vue-chartjs'
-import { ref } from 'vue'
 import {
   Chart as ChartJS,
   Title,
