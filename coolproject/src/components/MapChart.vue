@@ -1,6 +1,6 @@
 <template>
   <div v-if="geoLoaded" style="height: 600px; width: 800px">
-    <l-map ref="map" :zoom="12" :center="[40.571944, -74.146944]">
+    <l-map ref="map" :zoom="12" :center="[40.571944, -74.146944]" :use-global-leaflet="false">
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         layer-type="base"
