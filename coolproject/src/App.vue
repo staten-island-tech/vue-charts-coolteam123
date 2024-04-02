@@ -4,7 +4,6 @@
 const data = await fetch('https://data.cityofnewyork.us/resource/uip8-fykc.json')
 export const dataJSON = await data.json()
 </script>
-
 <template>
   <header>
     <div class="buttonContainer justify-center text-center">
@@ -17,9 +16,18 @@ export const dataJSON = await data.json()
           Map
         </button></RouterLink
       >
+      <RouterLink to="/pie">
+        <button class="justify-center m-2 border-green-700 rounded-lg border-4">
+          Pie
+        </button></RouterLink
+      >
     </div>
+
+    <!--       <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+      </nav> -->
   </header>
   <!-- <RouterView /> -->
 </template>
-
 <style scoped></style>
