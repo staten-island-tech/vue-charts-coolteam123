@@ -4,7 +4,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import { ref, onBeforeMount } from 'vue' // ref allows for editability, onMounted grabs api when component added on screen(for constant updates)
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
-import BarChart from './components/chart.vue'
+import PieChart from './components/chart.vue'
 const crimeData = ref('')
 const crimeLocationData = ref('')
 async function getAPI() {
@@ -25,13 +25,14 @@ onBeforeMount(() => {
 
 export default {
   name: 'App',
-  components: { BarChart},
+  components: { PieChart},
   /* props : ['data'], */
 } 
 </script>
 <template>
   <header>
-   <BarChart></BarChart>
+    
+   <PieChart></PieChart>
       <!--       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
