@@ -1,6 +1,8 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
+<script>
+// import { RouterLink, RouterView } from 'vue-router'
 // ref allows for editability, onMounted grabs api when component added on screen(for constant updates)
+const data = await fetch('https://data.cityofnewyork.us/resource/uip8-fykc.json')
+export const dataJSON = await data.json()
 </script>
 
 <template>

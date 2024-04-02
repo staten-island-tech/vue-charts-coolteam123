@@ -23,6 +23,7 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale,
 export default {
   name: 'BarChart',
   components: { Bar },
+  props: ['API'],
   data: () => ({
     loaded: false,
     chartData: {
@@ -38,8 +39,6 @@ export default {
   async mounted() {
     this.loaded = false
     try {
-      const data = await fetch('https://data.cityofnewyork.us/resource/uip8-fykc.json')
-      const dataJSON = await data.json() // results would bypass promise if i were using a ref
       const dataDict = [
         { borough: 'Brooklyn', crimes: 0 },
         {
@@ -59,7 +58,7 @@ export default {
           crimes: 0
         }
       ]
-      dataJSON.forEach((entry) => {
+      this.API.forEach((entry) => {
         if (entry.arrest_boro == 'K') {
           Object.entries(dataDict)[0][1].crimes++
         } else if (entry.arrest_boro == 'Q') {

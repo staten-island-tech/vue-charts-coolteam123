@@ -17,7 +17,7 @@
           {{ item.date }}<br />{{ item.boro }}</l-popup
         >
       </l-marker>
-      <l-geo-json :geojson="GeoJSON" :options-style="geoStyler"></l-geo-json>
+      <!--       <l-geo-json :geojson="GeoJSON" :options-style="geoStyler"></l-geo-json> -->
     </l-map>
     <div class="buttonContainer space-x-3 bottom-5 text-left">
       <button class="m-3" @click="boroughSelect('Q')">Queens</button>
@@ -31,21 +31,19 @@
 
 <script>
 import 'leaflet/dist/leaflet.css'
-import L from 'leaflet'
 import { ref } from 'vue'
-import { LMap, LTileLayer, LGeoJson, LMarker, LPopup } from '@vue-leaflet/vue-leaflet'
+import { LMap, LTileLayer, LMarker, LPopup } from '@vue-leaflet/vue-leaflet'
 
 export default {
   components: {
     LMap,
     LTileLayer,
-    LGeoJson,
     LMarker,
     LPopup
   },
+  props: [`API`],
   data() {
     return {
-      GeoJSON: undefined,
       geoLoaded: false,
       geoStyler: (feature) => ({
         opacity: feature.properties.code / 100000
@@ -62,9 +60,7 @@ export default {
   },
   async mounted() {
     this.geoLoaded = false
-    const data = await fetch('https://data.cityofnewyork.us/resource/uip8-fykc.json')
-    const dataJSON = await data.json()
-    dataJSON.forEach((element) => {
+    this.API.forEach((element) => {
       this.markers.push({
         name: `Crime: ${element.pd_desc}`,
         date: `Date: ${element.arrest_date.slice(0, 10)}`,
