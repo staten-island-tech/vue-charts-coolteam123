@@ -25,6 +25,15 @@
       <button @click="boroughSelect('M')">Manhattan</button>
       <button @click="boroughSelect('S')">Staten Island</button>
       <button @click="boroughSelect('K')">Brooklyn</button>
+      <button
+        @click="
+          this.markers.forEach((marker) => {
+            marker.visible = true
+          })
+        "
+      >
+        Show All
+      </button>
     </div>
   </div>
 </template>
@@ -60,19 +69,23 @@ export default {
   },
   async mounted() {
     this.geoLoaded = false
-    this.API.forEach((element) => {
-      this.markers.push({
-        name: `Crime: ${element.pd_desc}`,
-        date: `Date: ${element.arrest_date.slice(0, 10)}`,
-        boro: `Boro: ${element.arrest_boro}`,
-        position: {
-          lat: Number(element.geocoded_column.coordinates[1].toFixed(3)),
-          lng: Number(element.geocoded_column.coordinates[0].toFixed(3))
-        },
-        visible: true
+    try {
+      this.API.forEach((element) => {
+        this.markers.push({
+          name: `Crime: ${element.pd_desc}`,
+          date: `Date: ${element.arrest_date.slice(0, 10)}`,
+          boro: `Boro: ${element.arrest_boro}`,
+          position: {
+            lat: Number(element.geocoded_column.coordinates[1].toFixed(3)),
+            lng: Number(element.geocoded_column.coordinates[0].toFixed(3))
+          },
+          visible: true
+        })
       })
-    })
-    this.geoLoaded = true
+      this.geoLoaded = true
+    } catch (e) {
+      console.error(e)
+    }
   },
   methods: {
     boroughSelect(borough) {

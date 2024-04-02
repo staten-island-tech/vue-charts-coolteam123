@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Bar v-if="loaded" id="my-chart-id" :data="chartData" />
+    <Bar v-if="loaded" id="my-chart-id" :data="chartData" :style="customStyle" />
   </div>
 </template>
 
@@ -23,6 +23,10 @@ export default {
   name: 'BarChart',
   components: { Bar },
   props: ['API'],
+  customStyle: {
+    height: `500px`,
+    position: 'relative'
+  },
   data: () => ({
     loaded: false,
     chartData: {
