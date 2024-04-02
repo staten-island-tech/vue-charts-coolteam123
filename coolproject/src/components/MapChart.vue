@@ -1,40 +1,43 @@
 <template>
-  <div v-if="geoLoaded" style="height: 600px; width: 800px">
-    <l-map ref="map" :zoom="12" :center="[40.571944, -74.146944]" :use-global-leaflet="false">
-      <l-tile-layer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        layer-type="base"
-        name="OpenStreetMap"
-      ></l-tile-layer>
-      <l-marker
-        v-for="item in markers"
-        :key="item.name"
-        :visible="item.visible"
-        :lat-lng="item.position"
-      >
-        <l-popup>
-          {{ item.name }} <br />
-          {{ item.date }}<br />{{ item.boro }}</l-popup
+  <div>
+    <div v-if="geoLoaded" style="height: 600px; width: 800px">
+      <l-map ref="map" :zoom="12" :center="[40.571944, -74.146944]" :use-global-leaflet="false">
+        <l-tile-layer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          layer-type="base"
+          name="OpenStreetMap"
+        ></l-tile-layer>
+        <l-marker
+          v-for="item in markers"
+          :key="item.name"
+          :visible="item.visible"
+          :lat-lng="item.position"
         >
-      </l-marker>
-      <!--       <l-geo-json :geojson="GeoJSON" :options-style="geoStyler"></l-geo-json> -->
-    </l-map>
-    <div class="buttonContainer space-x-3 bottom-5 text-left">
-      <button class="m-3" @click="boroughSelect('Q')">Queens</button>
-      <button @click="boroughSelect('B')">Bronx</button>
-      <button @click="boroughSelect('M')">Manhattan</button>
-      <button @click="boroughSelect('S')">Staten Island</button>
-      <button @click="boroughSelect('K')">Brooklyn</button>
-      <button
-        @click="
-          this.markers.forEach((marker) => {
-            marker.visible = true
-          })
-        "
-      >
-        Show All
-      </button>
+          <l-popup>
+            {{ item.name }} <br />
+            {{ item.date }}<br />{{ item.boro }}</l-popup
+          >
+        </l-marker>
+        <!--       <l-geo-json :geojson="GeoJSON" :options-style="geoStyler"></l-geo-json> -->
+      </l-map>
+      <div class="buttonContainer space-x-3 bottom-5 text-left">
+        <button class="m-3" @click="boroughSelect('Q')">Queens</button>
+        <button @click="boroughSelect('B')">Bronx</button>
+        <button @click="boroughSelect('M')">Manhattan</button>
+        <button @click="boroughSelect('S')">Staten Island</button>
+        <button @click="boroughSelect('K')">Brooklyn</button>
+        <button
+          @click="
+            this.markers.forEach((marker) => {
+              marker.visible = true
+            })
+          "
+        >
+          Show All
+        </button>
+      </div>
     </div>
+    <h1 v-if="!geoLoaded">Chart not Loaded</h1>
   </div>
 </template>
 

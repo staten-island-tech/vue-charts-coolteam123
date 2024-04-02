@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <Bar v-if="loaded" id="my-chart-id" :data="chartData" :style="customStyle" />
+    <h1 v-if="!loaded">Chart not Loaded</h1>
   </div>
 </template>
 

@@ -62,6 +62,7 @@ export default {
 <template>
   <div class="container">
     <h1>Evan's pie chart of male and female crime.</h1>
+    <h1 v-if="!loaded">Chart not Loaded</h1>
     <link rel="stylesheet" href="/src/assets/index.css" />
     <Pie v-if="loaded" :data="chartData" />
   </div>
